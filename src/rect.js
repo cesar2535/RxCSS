@@ -1,5 +1,3 @@
-import Observable from './observable';
-
 export default function rect(node) {
   if (node instanceof Element) {
     const nodeRect = node.getBoundingClientRect();

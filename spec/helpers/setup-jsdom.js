@@ -1,11 +1,13 @@
-var jsdom = require("jsdom");
+const jsdom = require('jsdom');
 
 // Setup the jsdom environment
 // @see https://github.com/facebook/react/issues/5046
-global.document = jsdom.jsdom(`
+global.dom = new jsdom.JSDOM(`
   <!doctype html><html><body></body></html>
 `);
-global.window = document.defaultView;
+console.log(global.document);
+global.window = dom.window;
+global.document = global.window.document;
 global.navigator = global.window.navigator;
 
 global.document.documentElement.style.getPropertyValue = function(property) {
@@ -16,4 +18,4 @@ global.document.documentElement.style.getPropertyValue = function(property) {
   }
 
   return global.document.documentElement.style.getPropertyValue(property);
-}
+};

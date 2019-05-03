@@ -1,5 +1,3 @@
-const Subject = window.Rx
-  ? Rx.Subject
-  : require('rxjs/Subject').Subject;
+const Subject = window.rxjs ? rxjs.Subject : require('rxjs').Subject;
 
 export default Subject;
