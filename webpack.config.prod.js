@@ -8,19 +8,14 @@ const baseConfig = require('./webpack.config');
 
 const config = Object.create(baseConfig);
 
-
 config.plugins = config.plugins.concat([
-  new webpack.optimize.OccurenceOrderPlugin(),
+  // The OccurrenceOrderPlugin is now enabled by default
+  // new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production'),
-  }),
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    compressor: {
-      screw_ie8: true,
-      warnings: false,
-    },
-  }),
+    'process.env.NODE_ENV': JSON.stringify('production')
+  })
 ]);
+
+config.optimization.minimize = true; //Update this to true or false
 
 module.exports = config;
