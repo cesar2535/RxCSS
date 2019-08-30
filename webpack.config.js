@@ -1,7 +1,6 @@
 /* eslint strict:0 */
+'use strict';
 var path = require('path');
-
-('use strict');
 
 module.exports = {
   entry: path.join(__dirname, 'src/index.ts'),
