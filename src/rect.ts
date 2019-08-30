@@ -1,4 +1,4 @@
-export default function rect(node) {
+export default function rect(node: Element) {
   if (node instanceof Element) {
     const nodeRect = node.getBoundingClientRect();
 
@@ -7,10 +7,10 @@ export default function rect(node) {
       bottom: nodeRect.bottom,
       left: nodeRect.left,
       right: nodeRect.right,
-      height: nodeRect.height,
       width: nodeRect.width,
+      height: nodeRect.height
     };
   } else {
-    throw new Error(node + ' is not an element.');
+    throw new Error(`${node} is not an element`);
   }
 }

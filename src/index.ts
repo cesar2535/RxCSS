@@ -1,5 +1,5 @@
-import { of, map, merge, scan } from './observable';
-import Subject from './subject';
+import { Subject, of, merge } from 'rxjs';
+import { scan, map } from 'rxjs/operators';
 
 import unit from './unit';
 import rect from './rect';

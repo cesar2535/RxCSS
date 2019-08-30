@@ -1,8 +1,9 @@
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import mapValues from './utils/mapValues';
-import { map } from './observable';
 
 const unit = {
-  px: o$ =>
+  px: (o$: Observable<object>) =>
     o$.pipe(
       map(values => {
         if (typeof values === 'number') return `${values}px`;
