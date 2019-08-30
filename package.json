@@ -7,7 +7,7 @@
     "start": "npm run build",
     "build": "npm run build:umd && npm run build:lib",
     "build:lib": "babel src --out-dir lib",
-    "build:umd": "webpack -p src/index.ts dist/rxcss.min.js --config webpack.config.prod.js",
+    "build:umd": "webpack -p src/index.ts -o dist/rxcss.min.js --config webpack.config.prod.js",
     "build:watch": "webpack src/index.ts dist/rxcss.min.js --config webpack.config.prod.js -w",
     "test": "mocha --require @babel/register --require ./spec/helpers/setup-jsdom.js ./spec/"
   },

@@ -1,4 +1,4 @@
-import { Subject, of, merge } from 'rxjs';
+import { Subject, of, merge, isObservable } from 'rxjs';
 import { scan, map } from 'rxjs/operators';
 
 import unit from './unit';
@@ -6,8 +6,6 @@ import rect from './rect';
 import lerp from './lerp';
 import animationFrame from './animationFrame';
 import styledash from './styledash';
-
-const isObservable = (o): boolean => o && typeof o.subscribe === 'function';
 
 interface IObservable {
   subscribe: Function;
