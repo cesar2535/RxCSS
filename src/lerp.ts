@@ -1,7 +1,14 @@
 import mapValues from './utils/mapValues';
 
-const lerp = rate => (value, targetValue) => {
-  if (value !== null && (typeof value === 'object' || Array.isArray(value))) {
+const lerp = (rate: number) => (
+  value: { [key: string]: number },
+  targetValue: { [key: string]: number } | number
+) => {
+  if (
+    value !== null &&
+    (typeof value === 'object' || Array.isArray(value)) &&
+    typeof targetValue === 'object'
+  ) {
     return mapValues(value, (subVal, key) => {
       const delta = (targetValue[key] - subVal) * rate;
 
@@ -9,9 +16,11 @@ const lerp = rate => (value, targetValue) => {
     });
   }
 
-  const delta = (targetValue - value) * rate;
+  if (typeof targetValue === 'number' && typeof value === 'number') {
+    const delta = (targetValue - value) * rate;
 
-  return value + delta;
+    return value + delta;
+  }
 };
 
 export default lerp;

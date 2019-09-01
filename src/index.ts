@@ -16,7 +16,7 @@ interface IObservableMap {
   [key: string]: IObservable | string | number | boolean;
 }
 
-export = class RxCSS {
+export default class RxCSS {
   static set = (node: HTMLElement, key: string | {}, val?: any) =>
     styledash(node).set(key, val);
 
@@ -31,7 +31,7 @@ export = class RxCSS {
     observableMap: IObservableMap,
     target: HTMLElement = document.documentElement
   ) {
-    const style$ = merge(
+    const style$ = merge<IObservable>(
       ...Object.keys(observableMap).map(key => {
         let observable = observableMap[key] as IObservable;
 
@@ -65,4 +65,4 @@ export = class RxCSS {
 
     return sub$;
   }
-};
+}

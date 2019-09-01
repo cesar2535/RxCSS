@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 interface MyWindow extends Window {
   mozRequestAnimationFrame(callback: FrameRequestCallback): number;
@@ -14,7 +14,7 @@ const requestAnimationFrame =
   window.msRequestAnimationFrame;
 
 export function createAnimationFrameTicker() {
-  return Observable.create(observer => {
+  return Observable.create((observer: Observer<number>) => {
     let active = true;
     let lastTick = Date.now();
     let currentTick = Date.now();
