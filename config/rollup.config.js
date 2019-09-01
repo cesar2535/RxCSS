@@ -10,12 +10,12 @@ const ENV = process.env.NODE_ENV;
 
 const config = {
   input: 'src/index.ts',
-  plugins: [sizeSnapshot()]
+  plugins: [sizeSnapshot(), visualizer()]
 };
 
 if (ENV === 'es' || ENV === 'cjs') {
   config.output = { format: ENV };
-  config.plugins.push(typescript());
+  config.plugins.push(typescript({ objectHashIgnoreUnknownHack: true }));
 }
 
 if (ENV === 'development' || ENV === 'production') {
@@ -24,7 +24,10 @@ if (ENV === 'development' || ENV === 'production') {
     nodeResolve({
       mainFields: ['jsnext:main', 'main']
     }),
-    typescript({ rollupCommonJSResolveHack: true }),
+    typescript({
+      rollupCommonJSResolveHack: true,
+      objectHashIgnoreUnknownHack: true
+    }),
     commonjs({ extensions: ['.js', '.ts'] }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(ENV)
